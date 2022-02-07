@@ -25,14 +25,14 @@ enum planck_layers {
   _BASE_ALT_RIGHT,
   _LOWER,
   _RAISE,
-  _ADJUST
+  _ADJUST,
+  _FKEYS,
 };
 
 enum planck_keycodes {
   QWERTY = SAFE_RANGE,
   SEND_YES,
   SEND_NO,
-  VIM_CNF,
   CUST_EQ,
 };
 
@@ -85,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |      |      |      |      |      |      |      |      |   J  |   ,  |   ?  |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |   P  |      |   ;  |      |
+ * |      |      |      |      |      |      |      |      |   P  |   :  |   ;  |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |   <  |   >  |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -93,10 +93,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_BASE_ALT_RIGHT] = LAYOUT(
-    _______, _______, _______, _______, _______, _______, _______, _______, KC_J,    KC_COMM, LSFT(KC_SLASH), _______,
-    _______, _______, _______, _______, _______, _______, _______, _______, KC_P,    _______, KC_SCOLON,        _______,
-    _______, _______, _______, _______, _______, _______, _______, _______, KC_LT,   KC_GT,   _______,        _______,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,        _______
+    _______, _______, _______, _______, _______, _______, _______, _______, KC_J,    KC_COMM,         LSFT(KC_SLASH), _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, KC_P,    LSFT(KC_SCOLON), KC_SCOLON,        _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, KC_LT,   KC_GT,           _______,        _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,         _______,        _______
 ),
 
 /* Lower
@@ -105,16 +105,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |   _  |   +  |   -  |      |      |      |      |Enter |   {  |   }  |  |   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |   :  |   ^  |   $  |   =  |      |      |      |      |Ctrl-L|   [  |   ]  |  &   |
+ * |      |   ^  |   $  |   =  |      |      |      |      |Ctrl-L|   [  |   ]  |  &   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |             |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = LAYOUT(
-    _______,         KC_EXLM, KC_AT,     KC_HASH, _______, _______, _______, _______, KC_ASTR,    KC_LPRN, KC_RPRN, LCTL(KC_BSPC),
-    _______,         KC_UNDS, KC_PLUS,   KC_MINS, _______, _______, _______, _______, KC_ENT,     KC_LCBR, KC_RCBR, KC_PIPE,
-    LSFT(KC_SCOLON), KC_CIRC, KC_DOLLAR, CUST_EQ, _______, _______, _______, _______, LCTL(KC_L), KC_LBRC, KC_RBRC, KC_AMPR,
-    _______,         _______, _______,   _______, _______, _______, _______, _______, _______,    _______, _______, _______
+    _______, KC_EXLM, KC_AT,     KC_HASH, _______, _______, _______, _______, KC_ASTR,    KC_LPRN, KC_RPRN, LCTL(KC_BSPC),
+    _______, KC_UNDS, KC_PLUS,   KC_MINS, _______, _______, _______, _______, KC_ENT,     KC_LCBR, KC_RCBR, KC_PIPE,
+    _______, KC_CIRC, KC_DOLLAR, CUST_EQ, _______, _______, _______, _______, LCTL(KC_L), KC_LBRC, KC_RBRC, KC_AMPR,
+    _______, _______, _______,   _______, _______, _______, _______, _______, _______,    _______, _______, _______
 ),
 
 /* Raise
@@ -137,20 +137,38 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Adjust (Lower + Raise)
  * ,-----------------------------------------------------------------------------------.
- * |  F1  |  F2  |  F3  |  F4  |      |      |      |      | Yes  |  No  | Caps |Reset |
+ * |      |      |      |      |      |      |      |      | Yes  |  No  | Caps |Reset |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |  F5  |  F6  |  F7  |  F8  |      |      |      |      |C-S-L |C-S-R |      |Debug |
+ * |      |      |      |      |      |      |      |      |C-S-L |C-S-R |F Keys|Debug |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |  F9  |  F10 |  F11 |  F12 |      |      |      |      |C-A-L |C-A-R |      |UOSX  |
+ * |      |      |      |      |      |      |      |      |C-A-L |C-A-R |      |UOSX  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |             |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_ADJUST] = LAYOUT(
-    KC_F1,   KC_F2,   KC_F3,   KC_F4,   _______, _______, _______, _______, SEND_YES,            SEND_NO,              KC_CAPS, RESET,
-    KC_F5,   KC_F6,   KC_F7,   KC_F8,   _______, _______, _______, _______, LCTL(LGUI(KC_LEFT)), LCTL(LGUI(KC_RIGHT)), _______, DEBUG,
-    KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, _______, _______, _______, LCA(KC_LEFT),        LCA(KC_RIGHT),        _______, UNICODE_MODE_OSX,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______,              _______, _______
+    _______, _______, _______, _______, _______, _______, _______, _______, SEND_YES,            SEND_NO,              KC_CAPS,     RESET,
+    _______, _______, _______, _______, _______, _______, _______, _______, LCTL(LGUI(KC_LEFT)), LCTL(LGUI(KC_RIGHT)), OSL(_FKEYS), DEBUG,
+    _______, _______, _______, _______, _______, _______, _______, _______, LCA(KC_LEFT),        LCA(KC_RIGHT),        _______,     UNICODE_MODE_OSX,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______,              _______,     _______
+),
+
+/* F Keys
+ * ,-----------------------------------------------------------------------------------.
+ * |      |      | F1   | F2   |      |      |      |      | F3   | F4   |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      | F5   | F6   |      |      |      |      | F7   | F8   |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      | F9   | F10  |      |      |      |      | F11  | F12  |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_FKEYS] = LAYOUT(
+    _______, _______, KC_F1,   KC_F2,   _______, _______, _______, _______, KC_F3,   KC_F4,   _______, _______,
+    _______, _______, KC_F5,   KC_F6,   _______, _______, _______, _______, KC_F7,   KC_F8,   _______, _______,
+    _______, _______, KC_F9,   KC_F10,  _______, _______, _______, _______, KC_F11,  KC_F12,  _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 )
 
 };
@@ -196,69 +214,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case SEND_NO:
       if (record->event.pressed) {
         SEND_STRING("n\n");
-      }
-      return false;
-      break;
-    case VIM_CNF:
-      if (record->event.pressed) {
-        SEND_STRING(":set nocompatible\n");
-        SEND_STRING(":filetype plugin indent on\n");
-        SEND_STRING(":let mapleader= \"\\\\\"\n");
-        SEND_STRING(":set backspace=indent,eol,start\n");
-        SEND_STRING(":set tabstop=2\n");
-        SEND_STRING(":set shiftwidth=2\n");
-        SEND_STRING(":set softtabstop=2\n");
-        SEND_STRING(":set shiftround\n");
-        SEND_STRING(":set autoindent\n");
-        SEND_STRING(":set smartindent\n");
-        SEND_STRING(":set expandtab\n");
-        SEND_STRING(":set nowrap\n");
-        SEND_STRING(":set nostartofline\n");
-        SEND_STRING(":set modeline\n");
-        SEND_STRING(":set number\n");
-        SEND_STRING(":set relativenumber\n");
-        SEND_STRING(":set incsearch\n");
-        SEND_STRING(":set nowrapscan\n");
-        SEND_STRING(":autocmd BufNewFile,BufRead * exec \"setlocal colorcolumn=\".(&ma ? \"81\" : \"0\")\n");
-        SEND_STRING(":syntax enable\n");
-
-        SEND_STRING(":function! InsertModeChanged(mode)\n");
-        SEND_STRING("   if a:mode == 'i'\n");
-        SEND_STRING("        highlight LineNr ctermfg=45\n");
-        SEND_STRING("        highlight CursorLineNr ctermfg=33\n");
-        SEND_STRING("    elseif a:mode == 'r'\n");
-        SEND_STRING("        highlight LineNr ctermfg=202\n");
-        SEND_STRING("        highlight CursorLineNr ctermfg=196\n");
-        SEND_STRING("    else\n");
-        SEND_STRING("        highlight LineNr ctermfg=244\n");
-        SEND_STRING("        highlight CursorLineNr ctermfg=238\n");
-        SEND_STRING("    endif\n");
-        SEND_STRING("endfunction\n");
-        SEND_STRING(":autocmd InsertEnter * call InsertModeChanged(v:insertmode)\n");
-        SEND_STRING(":autocmd InsertLeave * call InsertModeChanged('')\n");
-        SEND_STRING(":call InsertModeChanged('')\n");
-
-        SEND_STRING(":nnoremap <expr> ` printf('`\%czz', getchar())\n");
-        SEND_STRING(":noremap <leader>i `iO\n");
-
-        SEND_STRING(":set hidden\n");
-        SEND_STRING(":nmap <silent> <leader>Tn <Esc>:tabnew<CR>\n");
-        SEND_STRING(":nmap <silent> <leader>bb <Esc>:b#<CR>zz\n");
-        SEND_STRING(":nmap <silent> <leader>bq <Esc>:call CloseBuffer()<CR>\n");
-        SEND_STRING(":nmap <silent> <leader>bw <Esc>:w<CR>:call CloseBuffer()<CR>\n");
-        SEND_STRING(":nmap <silent> \\| <Esc>:b#<CR>zz\n");
-
-        SEND_STRING(":inoremap <C-s> <Esc>:wa<CR>\n");
-        SEND_STRING(":nnoremap <C-s> <Esc>:wa<CR>\n");
-        SEND_STRING(":command! Q wqa\n");
-
-        SEND_STRING(":setlocal completeopt=longest,menuone\n");
-        SEND_STRING(":fun! ShouldAutocomplete()\n");
-        SEND_STRING("    return pumvisible() || !(strpart(getline('.'), 0, col('.') - 1) =~ '^\\s*$')\n");
-        SEND_STRING("endfun\n");
-        SEND_STRING(":imap <expr> <Tab> ShouldAutocomplete() ? '<C-p>' : '<Tab>'\n");
-        SEND_STRING(":imap <expr> <Up> pumvisible() ? '<C-p>' : '<Up>'\n");
-        SEND_STRING(":imap <expr> <Down> pumvisible() ? '<C-n>' : '<Down>'\n");
       }
       return false;
       break;
@@ -348,27 +303,6 @@ void dip_switch_update_user(uint8_t index, bool active) {
                 muse_mode = false;
             }
     }
-}
-
-void matrix_scan_user(void) {
-#ifdef AUDIO_ENABLE
-    if (muse_mode) {
-        if (muse_counter == 0) {
-            uint8_t muse_note = muse_offset + SCALE[muse_clock_pulse()];
-            if (muse_note != last_muse_note) {
-                stop_note(compute_freq_for_midi_note(last_muse_note));
-                play_note(compute_freq_for_midi_note(muse_note), 0xF);
-                last_muse_note = muse_note;
-            }
-        }
-        muse_counter = (muse_counter + 1) % muse_tempo;
-    } else {
-        if (muse_counter) {
-            stop_all_notes();
-            muse_counter = 0;
-        }
-    }
-#endif
 }
 
 bool music_mask_user(uint16_t keycode) {
