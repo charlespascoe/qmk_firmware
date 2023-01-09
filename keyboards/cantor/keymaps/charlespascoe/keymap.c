@@ -48,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /*
    * ┌───┬───┬───┬───┬───┬───┐       ┌───┬───┬───┬───┬───┬───┐
-   * │   │ ! │ @ │ # │ $ │ % │       │ ^ │ & │ * │ ( │ ) │CBs│
+   * │   │ ! │ @ │ # │ $ │ % │       │ ^ │ & │ * │ ( │ ) │OBs│
    * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
    * │Cap│ _ │ + │ - │ = │   │       │   │   │Ent│ { │ } │ | │
    * ├───┼───┼───┼───┼───┼───┤       ├───┼───┼───┼───┼───┼───┤
@@ -56,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * └───┴───┴───┴───┴───┴───┘       └───┴───┴───┴───┴───┴───┘
    */
   [_LOWER] = LAYOUT_split_3x6_3(
-    _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,        KC_CIRC, KC_AMPR, KC_ASTR,    KC_LPRN, KC_RPRN, LCTL(KC_BSPC),
+    _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,        KC_CIRC, KC_AMPR, KC_ASTR,    KC_LPRN, KC_RPRN, LALT(KC_BSPC),
     KC_CAPS, KC_UNDS, KC_PLUS, KC_MINS, KC_EQL,  _______,        _______, _______, KC_ENT,     KC_LCBR, KC_RCBR, KC_PIPE,
     _______, _______, _______, _______, UC(GBP), _______,        _______, _______, LCTL(KC_L), KC_LBRC, KC_RBRC, _______,
                                _______, _______, _______,        _______, _______, _______
