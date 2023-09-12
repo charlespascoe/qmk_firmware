@@ -1,1 +1,1 @@
-qmk compile -kb foostan/cornelius -km charlespascoe
+qmk compile -kb crkbd/rev1 -km charlespascoe
